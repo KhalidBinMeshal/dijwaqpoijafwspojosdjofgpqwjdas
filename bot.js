@@ -302,7 +302,7 @@ message.channel.sendEmbed(embed)
 });
   client.on('message', message =>{
     let args = message.content.split(' ');
-    let prefix = '.'; //تقدر تغير البرفكس
+    let prefix = '.';
     
     if(args[0] === `${prefix}avatar`){
         let mentions = message.mentions.members.first()
@@ -356,33 +356,5 @@ return;
       return;
   }
 });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "deafen")) {
-    if (!message.member.hasPermission('DEAFEN_MEMBERS')) return;
-  { message.member.setDeaf(true);
-    }
-  }
-    });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "vmute")) {
-    if (!message.member.hasPermission('DEAFEN_MEMBERS')) return;
-  { message.member.setMute(true);
-    }
-  }
-    });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "undeafen")) {
-    if (!message.member.hasPermission('DEAFEN_MEMBERS')) return;
-  { message.member.setDeaf(false);
-    }
-  }
-    });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "vunmute")) {
-    if (!message.member.hasPermission('MUTE_MEMBERS')) return;
-  { message.member.setMute(false);
-    }
-  }
-    });
 
 client.login(process.env.BOT_TOKEN);
