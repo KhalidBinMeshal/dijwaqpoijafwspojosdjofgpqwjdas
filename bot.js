@@ -1,5 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const fs = require('fs');
+const moment = require('moment');
+const jimp = require('jimp');
+const Canvas = require('canvas');
 const prefix = '.'
 
 client.on('ready', () => {
@@ -76,68 +80,6 @@ client.on('message' , najzx => {
                 najzx.channel.send(`لقد تم ارسال هذه الرسالة الى ${najzx.guild.members.filter(m => m.roles.get(role.id)).size} عضو`)
             }
         });
-client.on('message', ra3d => {
-                        let args = ra3d.content.split(" ").slice(1).join(" ")
-if(ra3d.content.startsWith(prefix + 'ccolors')) {
-    if(!args) return ra3d.channel.send('`يرجي اختيار كم لون `');
-             if (!ra3d.member.hasPermission('MANAGE_ROLES')) return ra3d.channel.sendMessage('`**⚠ | `[MANAGE_ROLES]` لا يوجد لديك صلاحية**'); 
-              ra3d.channel.send(`**✅ |Created __${args}__ Colors**`);
-                  setInterval(function(){})
-                    let count = 0;
-                    let ecount = 0;
-          for(let x = 1; x < `${parseInt(args)+1}`; x++){
-            ra3d.guild.createRole({name:x,
-              color: 'RANDOM'})
-              }
-            }
-       });
-client.on("message", message => {
-	var prefix = "!";
-	var args = message.content.split(' ').slice(1); 
-	var msg = message.content.toLowerCase();
-	if( !message.guild ) return;
-	if( !msg.startsWith( prefix + 'role' ) ) return;
-	if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__ليس لديك صلاحيات__**');
-	if( msg.toLowerCase().startsWith( prefix + 'roleremove' ) ){
-		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
-		if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
-		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
-		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
-		if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );if( message.mentions.members.first() ){
-			message.mentions.members.first().removeRole( role1 );
-			return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
-		}
-		if( args[0].toLowerCase() == "all" ){
-			message.guild.members.forEach(m=>m.removeRole( role1 ))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
-		} else if( args[0].toLowerCase() == "bots" ){
-			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
-		} else if( args[0].toLowerCase() == "humans" ){
-			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
-		} 	
-	} else {
-		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
-		if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );
-		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
-		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
-		if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
-			message.mentions.members.first().addRole( role1 );
-			return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
-		}
-		if( args[0].toLowerCase() == "all" ){
-			message.guild.members.forEach(m=>m.addRole( role1 ))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
-		} else if( args[0].toLowerCase() == "bots" ){
-			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
-		} else if( args[0].toLowerCase() == "humans" ){
-			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
-		} 
-	} 
-});
 var AsciiTable = require('ascii-data-table').default
 client.on('message', message =>{
 
@@ -153,6 +95,109 @@ client.on('message', message =>{
 
         message.channel.send(`**\`\`\`xl\n${res}\`\`\`**`);
     }
+});
+client.on('guildMemberAdd', member => {
+     const welcomer =  member.guild.channels.find('name', 'اسم روم الترحيب');
+const w = ['./w1.png'];
+ 
+         let Image = Canvas.Image,
+            canvas = new Canvas(400, 200),
+            ctx = canvas.getContext('2d');
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 200);
+             
+         
+ 
+                let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(100) + ".png" : member.user.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                        ctx.font = "bold 12px Arial";
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#f1f1f1";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`welcome to Brix`, 300, 130);
+                       
+                        ctx.font = "bold 12px Arial";
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#f1f1f1";
+                        ctx.textAlign = "center";
+                        ctx.fillText(member.user.username, 200, 150);
+ 
+                let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(77, 101, 62, 0, Math.PI*2);
+                              ctx.stroke();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 13, 38, 128, 126);  
+                         
+               
+                             
+welcomer.sendFile(canvas.toBuffer())
+ 
+ 
+ 
+     
+     
+                    }  )  
+     
+                   
+ 
+})
+      });                    
+});
+var dat = JSON.parse("{}");
+function forEachObject(obj, func) {
+    Object.keys(obj).forEach(function (key) { func(key, obj[key]) });
+}
+client.on("ready", () => {
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("ايدي سيرفرك ");
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            dat[Inv] = Invite.uses;
+        });
+    });
+});
+ 
+ 
+ 
+client.on("guildMemberAdd", (member) => {
+    let channel = member.guild.channels.get("ايدي الروووووم");
+    if (!channel) {
+        console.log("!the channel id it's not correct");
+        return;
+    }
+    if (member.id == client.user.id) {
+        return;
+    }
+    console.log('-');
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("ايدي سيررفرك");
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            if (dat[Inv])
+                if (dat[Inv] < Invite.uses) {
+                    setTimeout(function() {
+ channel.send(`**invited by** ${Invite.inviter} `) ;
+                    },1500);
+ }
+            dat[Inv] = Invite.uses;
+       
+       });
+    });
 });
 
 client.login(process.env.BOT_TOKEN);
