@@ -4,7 +4,7 @@ const fs = require('fs');
 const moment = require('moment');
 const jimp = require('jimp');
 const Canvas = require('canvas');
-const prefix = '.'
+const prefix = 'f!'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
