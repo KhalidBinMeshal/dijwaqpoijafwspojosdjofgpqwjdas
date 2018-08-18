@@ -34,7 +34,7 @@ client.on("guildMemberAdd", function(member) {
         .setAuthor(member.user.tag, member.user.avatarURL)
  .setDescription('***يا مرحبا وسهلاً بضيف لفانا، يزهي بك الأدب العربي وينثر لك أزهار يسقيك من نبع المشاعر وفانا، لين الهلا تثمر على غصونك أطيار. ***')
 .setThumbnail(member.avatarURL)
-  .setImage('https://www.askideas.com/media/13/Welcome-Deers-Sign.jpg')
+  .setImage('https://f.top4top.net/p_960k69d41.png')
         .setTimestamp()
         return wc.sendEmbed(embed);
         
