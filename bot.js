@@ -560,7 +560,6 @@ return;
 
     
 client.on('message', message => {
-     var prefix = "f!"
 if (message.content.startsWith(prefix + "uptime")) {
     let uptime = client.uptime;
 
@@ -604,7 +603,7 @@ if (message.content.startsWith(prefix + "uptime")) {
 });
 
 client.on('message', function(msg) {
-         var prefix = "f!"
+         
     if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
@@ -761,7 +760,7 @@ function timeCon(time) {
 }
 
 client.on('message', message => {
-    var prefix = "f!"
+    
     let command = message.content.split(" ")[0];
   command = command.slice(prefix.length);
 
@@ -1068,7 +1067,7 @@ client.on('message', message => {
 });
 
 
-var prefix = "f!"
+
 client.on('message', message => {
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
@@ -1110,7 +1109,7 @@ client.on('message', message => {
  
 
  
-var prefix = "f!"
+
 client.on('message', message => {
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
