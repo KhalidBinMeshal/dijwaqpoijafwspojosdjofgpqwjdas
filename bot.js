@@ -2978,5 +2978,5 @@ client.on("guildMemberAdd", member => {
 
 
 
-//MHSTR END NOW THIS IS END
+//MHSTR END NOW THIS IS ENd
 client.login(process.env.BOT_TOKEN);
