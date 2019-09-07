@@ -2979,7 +2979,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'ip') {
-              message.channel.send('**الآيبي 
+              message.channel.send('** الآيبي 
 
          يمكنك البحث عن السيرفر بالإسم
 سيرفر بلوكس لايف للحياة الواقعية 
