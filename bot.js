@@ -2979,7 +2979,21 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'ip') {
-              message.channel.send('**وعليكم السلام ورحمة الله وبركاته**');
+              message.channel.send('**الآيبي 
+
+         يمكنك البحث عن السيرفر بالإسم
+سيرفر بلوكس لايف للحياة الواقعية 
+
+
+او عن طريق الإتصال عن طريق اللآيبي
+F8 بفتح قائمة 
+ و كتابة
+ connect fivem.blocks.host
+
+enter الضغط على
+ومن ثم، إغلاق القائمة بالضغط على
+F8
+Enjoy :blockslife:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
