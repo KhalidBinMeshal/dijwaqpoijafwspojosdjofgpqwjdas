@@ -2974,7 +2974,17 @@ client.on("guildMemberAdd", member => {
       
       }
       });
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+         client.on('message', message => {
+            if (message.content === 'ip') {
+              message.channel.send('**وعليكم السلام ورحمة الله وبركاته**');
+              message.channel.sendFile("./photoshop.PNG");
+               
 
+            }
+});
 
 
 
